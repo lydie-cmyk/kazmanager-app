@@ -91,7 +91,7 @@ function daysBetween(a,b){return Math.max(1,Math.round((new Date(b)-new Date(a))
 
 async function callClaude(prompt){
   try{
-    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+    const res=await fetch("/api/claude",{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,
         system:"Tu es un assistant expert en gestion locative aux Antilles françaises. Tu génères des documents professionnels en français. Sois direct et professionnel.",
         messages:[{role:"user",content:prompt}]})});
