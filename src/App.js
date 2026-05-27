@@ -92,16 +92,7 @@ function daysBetween(a,b){return Math.max(1,Math.round((new Date(b)-new Date(a))
 async function callClaude(prompt){
   try{
     const res=await fetch("/api/claude",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({prompt:prompt,system:"Tu es un assistant expert en gestion locative aux Antilles françaises. Tu génères des documents professionnels en français. Sois direct et professionnel."})});
-    const d=await res.json();
-    return d.content?.[0]?.text||"Erreur.";
-  }catch{return"Erreur de connexion.";}
-}
-  try{
-    const res=await fetch("/api/claude",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,
-        system:"Tu es un assistant expert en gestion locative aux Antilles françaises. Tu génères des documents professionnels en français. Sois direct et professionnel.",
-        messages:[{role:"user",content:prompt}]})});
+      body:JSON.stringify({prompt,system:"Tu es un assistant expert en gestion locative aux Antilles françaises. Tu génères des documents professionnels en français. Sois direct et professionnel."})});
     const d=await res.json();return d.content?.[0]?.text||"Erreur.";
   }catch{return"Erreur de connexion.";}
 }
